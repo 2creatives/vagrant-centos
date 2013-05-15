@@ -7,18 +7,32 @@ Run:
 
   ./setup
 
-and follow the instructions. There is a hacky 'web server' to get the
-kickstart script into the installer which requires a recent `netcat`
-version. Alternatively, you could host the `ks.cfg` file on your own
-HTTP server.
+and at the boot prompt press tab to gain access to the boot options. Add the
+ks=.* string you get from the command prompt. The rest of the installation is
+automated, however, you will have to intervene to shutdown the machine at the
+end. You will know when this moment is when you are presented with a login
+prompt. Just type in:
 
-Be aware that this build will *not* bake in any provisioners
-(e.g. puppet, chef, etc.). You will need to decide how you wish to
-provision your boxes.
+  username: root
+  password: vagrant
 
-You are encouraged to look at the top of `setup` to modify the
-configuration to best suit your needs. In particular, take note of the
-location of the ISOs (which aren't apart of the source):
+and type `poweroff`. Run the last command that `setup` spits out (of the form
+`./cleanup && ...`). Congratulations! You have just created a Vagrant box.
+
+
+Notes
+-----
+
+There is a hacky 'web server' to get the kickstart script into the installer
+which requires a recent `netcat` version. Alternatively, you could host the
+`ks.cfg` file on your own HTTP server.
+
+Be aware that this build will *not* bake in any provisioners (e.g. puppet,
+chef, etc.). You will need to decide how you wish to provision your boxes.
+
+You are encouraged to look at the top of `setup` to modify the configuration
+to best suit your needs. In particular, take note of the location of the ISOs
+(which aren't apart of the source):
 
   INSTALLER="./isos/CentOS-6.4-x86_64-minimal.iso"
   GUESTADDITIONS="./isos/VBoxGuestAdditions.iso"
