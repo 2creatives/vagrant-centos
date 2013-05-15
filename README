@@ -2,3 +2,27 @@ vagrant-centos
 ==============
 
 Scripts to create a lean CentOS Vagrant box.
+
+Run:
+
+  ./setup
+
+and follow the instructions. There is a hacky 'web server' to get the
+kickstart script into the installer which requires a recent `netcat`
+version. Alternatively, you could host the `ks.cfg` file on your own
+HTTP server.
+
+Be aware that this build will *not* bake in any provisioners
+(e.g. puppet, chef, etc.). You will need to decide how you wish to
+provision your boxes.
+
+You are encouraged to look at the top of `setup` to modify the
+configuration to best suit your needs. In particular, take note of the
+location of the ISOs (which aren't apart of the source):
+
+  INSTALLER="./isos/CentOS-6.4-x86_64-minimal.iso"
+  GUESTADDITIONS="./isos/VBoxGuestAdditions.iso"
+
+Assumptions have been made about the location of the hard drive as well:
+
+  HDD="${HOME}/VirtualBox VMs/${NAME}/${NAME}.vmdk"

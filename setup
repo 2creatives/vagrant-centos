@@ -1,0 +1,47 @@
+#!/bin/sh -e
+NAME=centos64-x86_64
+TYPE=RedHat_64
+INSTALLER="./isos/CentOS-6.4-x86_64-minimal.iso"
+GUESTADDITIONS="./isos/VBoxGuestAdditions.iso"
+HDD="${HOME}/VirtualBox VMs/${NAME}/${NAME}.vmdk"
+
+VBoxManage createvm --name ${NAME} --ostype ${TYPE} --register
+
+VBoxManage modifyvm ${NAME} \
+    --vram 8 \
+    --accelerate3d off \
+    --memory 613 \
+    --usb off \
+    --audio none \
+    --boot1 disk --boot2 dvd --boot3 none --boot4 none \
+    --nictype1 virtio --nic1 nat \
+    --acpi on --ioapic off \
+    --chipset piix3 \
+    --rtcuseutc on \
+    --bioslogofadein off \
+    --bioslogofadeout off \
+    --bioslogodisplaytime 0 \
+    --biosbootmenu disabled
+
+VBoxManage createhd --format VMDK --size 8192 --filename "${HDD}"
+
+VBoxManage storagectl ${NAME} \
+    --name SATA --add sata --sataportcount 2 --bootable on
+
+VBoxManage storageattach ${NAME} \
+    --storagectl SATA --port 0 --type hdd --medium "${HDD}"
+VBoxManage storageattach ${NAME} \
+    --storagectl SATA --port 1 --type dvddrive --medium "${INSTALLER}"
+VBoxManage storageattach ${NAME} \
+    --storagectl SATA --port 2 --type dvddrive --medium "${GUESTADDITIONS}"
+
+VBoxManage startvm ${NAME} --type gui
+
+# This is quite mac specific... sorry!
+echo Append one of these ks= statements to the boot flags:
+ifconfig en0 | grep 'inet ' | awk '{ print " ks=http://" $2 ":8081" }'
+ifconfig en1 | grep 'inet ' | awk '{ print " ks=http://" $2 ":8081" }'
+sh ./httpd.sh | nc -l -p 8081 >/dev/null
+
+echo When finished:
+echo "./cleanup && vagrant package --base ${NAME} --output ${NAME}-`date -j +%Y%m%d`.box"
