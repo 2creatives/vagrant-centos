@@ -44,4 +44,4 @@ ifconfig en1 | grep 'inet ' | awk '{ print " ks=http://" $2 ":8081" }'
 sh ./httpd.sh | nc -l -p 8081 >/dev/null
 
 echo When finished:
-echo "./cleanup && vagrant package --base ${NAME} --output ${NAME}-`date -j +%Y%m%d`.box"
+echo "./cleanup && vagrant package --base ${NAME} --output boxes/${NAME}-`date -j +%Y%m%d`.box"
