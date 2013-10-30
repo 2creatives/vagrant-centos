@@ -20,11 +20,13 @@ Specification
 -------------
 
 The box is constrianed to 613 MiB of memory to vaguely resemble an
-Amazon AWS micro instance. You may want to consider raising this for
-your needs using a line like:
+Amazon AWS micro instance. You may want to consider adjusting this
+for your needs using options like:
 
-    config.vm.customize ["modifyvm", :id, "--memory", 2048]
-    config.vm.customize ["modifyvm", :id, "--cpus", 2]
+    config.vm.provider "virtualbox" do |vb|
+        vb.customize ["modifyvm", :id, "--memory", 2048]
+        vb.customize ["modifyvm", :id, "--ioapic", "on", "--cpus", 2]
+    end
 
 in your `Vagrantfile`.
 
