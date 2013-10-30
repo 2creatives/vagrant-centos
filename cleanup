@@ -11,7 +11,7 @@ VBoxManage storagectl ${NAME} \
     --name SATA --remove
 
 VBoxManage storagectl ${NAME} \
-    --name SATA --add sata --sataportcount 1 --bootable on
+    --name SATA --add sata --portcount 1 --bootable on
 
 VBoxManage storageattach ${NAME} \
     --storagectl SATA --port 0 --type hdd \

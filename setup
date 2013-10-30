@@ -8,7 +8,7 @@ HDD="${HOME}/VirtualBox VMs/${NAME}/${NAME}.vmdk"
 VBoxManage createvm --name ${NAME} --ostype ${TYPE} --register
 
 VBoxManage modifyvm ${NAME} \
-    --vram 8 \
+    --vram 12 \
     --accelerate3d off \
     --memory 613 \
     --usb off \
@@ -26,7 +26,7 @@ VBoxManage modifyvm ${NAME} \
 VBoxManage createhd --format VMDK --size 8192 --filename "${HDD}"
 
 VBoxManage storagectl ${NAME} \
-    --name SATA --add sata --sataportcount 2 --bootable on
+    --name SATA --add sata --portcount 2 --bootable on
 
 VBoxManage storageattach ${NAME} \
     --storagectl SATA --port 0 --type hdd --medium "${HDD}"
