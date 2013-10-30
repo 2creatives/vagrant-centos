@@ -7,36 +7,56 @@ Run:
 
   ./setup
 
-and at the boot prompt press tab to gain access to the boot options. Add the
-ks=.* string you get from the command prompt. The rest of the installation is
-automated, however, you will have to intervene to shutdown the machine at the
-end. You will know when this moment is when you are presented with a login
-prompt. Just type in:
+and at the boot prompt press tab to gain access to the boot options.
+Add the ks=.* string you get from the command prompt. The rest of
+the installation is automated.
 
-  username: root
-  password: vagrant
-
-and type `poweroff`. Run the last command that `setup` spits out (of the form
-`./cleanup && ...`). Congratulations! You have just created a Vagrant box.
+Finally, run the last command that `setup` spits out (it's of the
+form `./cleanup && ...`). Congratulations! You have just created a
+Vagrant box.
 
 
-Notes
------
+Specification
+-------------
 
-There is a hacky 'web server' to get the kickstart script into the installer
-which requires a recent `netcat` version. Alternatively, you could host the
-`ks.cfg` file on your own HTTP server.
+The box is constrianed to 613 MiB of memory to vaguely resemble an
+Amazon AWS micro instance. You may want to consider raising this for
+your needs using a line like:
 
-Be aware that this build will *not* bake in any provisioners (e.g. puppet,
-chef, etc.). You will need to decide how you wish to provision your boxes.
+    config.vm.customize ["modifyvm", :id, "--memory", 2048]
+    config.vm.customize ["modifyvm", :id, "--cpus", 2]
 
-You are encouraged to look at the top of `setup` to modify the configuration
-to best suit your needs. In particular, take note of the location of the ISOs
-(which aren't apart of the source):
+in your `Vagrantfile`.
+
+This box has a heavy bias towards English locales. If this affects
+you, please adjust the `ks.cfg` file accordingly. This was mainly
+done as a space saving measure.
+
+
+Additional Notes
+----------------
+
+There is a hacky 'web server' to get the kickstart script into the
+installer which requires a recent `netcat` version. Alternatively,
+you could host the `ks.cfg` file on your own HTTP server.
+
+Be aware that this build will *not* bake in any special provisioners
+(e.g. puppet, chef, etc.). Of course, shell scripting is still
+available or you can modify kickstart file to include your favourite
+provisioner.
+
+The development tools group package is also included for
+convenience. This includes things like `gcc`, `make`, etc.
+
+You are encouraged to look at the top of `setup` to modify the
+configuration to best suit your needs. In particular, take note
+of the location of the ISOs (which aren't include in the git
+repository):
 
   INSTALLER="./isos/CentOS-6.4-x86_64-minimal.iso"
   GUESTADDITIONS="./isos/VBoxGuestAdditions.iso"
 
-Assumptions have been made about the location of the hard drive as well:
+Assumptions have been made about the location of the hard drive as
+well:
 
   HDD="${HOME}/VirtualBox VMs/${NAME}/${NAME}.vmdk"
