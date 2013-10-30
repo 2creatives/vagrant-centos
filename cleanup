@@ -4,7 +4,6 @@ NAME=centos64-x86_64
 set -x
 
 VBoxManage modifyvm ${NAME} \
-    --memory 613 \
     --boot1 disk --boot2 none --boot3 none --boot4 none \
 
 VBoxManage storagectl ${NAME} \
