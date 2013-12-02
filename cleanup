@@ -1,5 +1,5 @@
 #!/bin/sh
-NAME=centos64-x86_64
+NAME=centos65-x86_64
 
 set -x
 
