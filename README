@@ -8,7 +8,7 @@ Run:
   ./setup
 
 and at the boot prompt press tab to gain access to the boot options.
-Add the ks=.* string you get from the command prompt. The rest of
+Add the `ks=.*` string you get from the command prompt. The rest of
 the installation is automated.
 
 Finally, run the last command that `setup` spits out (it's of the
@@ -19,7 +19,7 @@ Vagrant box.
 Specification
 -------------
 
-The box is constrianed to 613 MiB of memory to vaguely resemble an
+The box is constrained to 613 MiB of memory to vaguely resemble an
 Amazon AWS micro instance. You may want to consider adjusting this
 for your needs using options like:
 
@@ -30,9 +30,9 @@ for your needs using options like:
 
 in your `Vagrantfile`.
 
-This box has a heavy bias towards English locales. If this affects
-you, please adjust the `ks.cfg` file accordingly. This was mainly
-done as a space saving measure.
+This box has a heavy bias towards US English locales. If this
+affects you, please adjust the `ks.cfg` file accordingly. This was
+mainly done as a space saving measure.
 
 
 Additional Notes
