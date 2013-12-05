@@ -62,3 +62,10 @@ Assumptions have been made about the location of the hard drive as
 well:
 
   HDD="${HOME}/VirtualBox VMs/${NAME}/${NAME}.vmdk"
+
+If you wished to be emailed with the various logs the build produces
+see the `ks.cfg` file and find the line:
+
+  EMAIL=root
+
+and adjust accordingly.
