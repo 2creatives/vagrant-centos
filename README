@@ -42,13 +42,13 @@ There is a hacky 'web server' to get the kickstart script into the
 installer which requires a recent `netcat` version. Alternatively,
 you could host the `ks.cfg` file on your own HTTP server.
 
-Be aware that this build will *not* bake in any special provisioners
-(e.g. puppet, chef, etc.). Of course, shell scripting is still
-available or you can modify kickstart file to include your favourite
-provisioner.
+Please be aware that these scripts will *not* install any special
+provisioners beyond the shell. Patches will be considered if you
+wish to contribute support for Puppet, Chef, etc.
 
 The development tools group package is also included for
-convenience. This includes things like `gcc`, `make`, etc.
+convenience. This includes things like `gcc` and `make` as well as
+VCSs like `git`, `hg`, `bzr`, etc.
 
 You are encouraged to look at the top of `setup` to modify the
 configuration to best suit your needs. In particular, take note
