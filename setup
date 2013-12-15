@@ -18,6 +18,7 @@ VBoxManage modifyvm ${NAME} \
     --acpi on --ioapic off \
     --chipset piix3 \
     --rtcuseutc on \
+    --hpet on \
     --bioslogofadein off \
     --bioslogofadeout off \
     --bioslogodisplaytime 0 \
