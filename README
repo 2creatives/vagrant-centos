@@ -50,7 +50,7 @@ The development tools group package is also included for
 convenience. This includes things like `gcc` and `make` as well as
 VCSs like `git`, `hg`, `bzr`, etc.
 
-You are encouraged to look at the top of `setup` to modify the
+You are encouraged to look at the file `vars.sh` to modify the
 configuration to best suit your needs. In particular, take note
 of the location of the ISOs (which aren't include in the git
 repository):

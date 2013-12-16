@@ -1,5 +1,5 @@
 #!/bin/sh
-NAME=centos64-x86_64
+source vars.sh
 
 set -x
 
