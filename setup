@@ -23,6 +23,11 @@ VBoxManage modifyvm ${NAME} \
     --bioslogodisplaytime 0 \
     --biosbootmenu disabled
 
+if [ ! -z $NATNET ]; then
+    echo "changing default network"
+    VBoxManage modifyvm ${NAME} --natnet1 "${NATNET}"
+fi
+
 VBoxManage createhd --format VMDK --size 8192 --filename "${HDD}"
 
 VBoxManage storagectl ${NAME} \
