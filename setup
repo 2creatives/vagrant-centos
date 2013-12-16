@@ -11,6 +11,9 @@ VBoxManage modifyvm ${NAME} \
     --audio none \
     --boot1 disk --boot2 dvd --boot3 none --boot4 none \
     --nictype1 virtio --nic1 nat \
+    --nictype2 virtio \
+    --nictype3 virtio \
+    --nictype4 virtio \
     --acpi on --ioapic off \
     --chipset piix3 \
     --rtcuseutc on \
