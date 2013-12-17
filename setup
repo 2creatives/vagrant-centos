@@ -10,7 +10,7 @@ VBoxManage modifyvm ${NAME} \
     --usb off \
     --audio none \
     --boot1 disk --boot2 dvd --boot3 none --boot4 none \
-    --nictype1 virtio --nic1 nat \
+    --nictype1 virtio --nic1 nat --natnet1 "${NATNET}" \
     --nictype2 virtio \
     --nictype3 virtio \
     --nictype4 virtio \
@@ -22,11 +22,6 @@ VBoxManage modifyvm ${NAME} \
     --bioslogofadeout off \
     --bioslogodisplaytime 0 \
     --biosbootmenu disabled
-
-if [ ! -z $NATNET ]; then
-    echo "changing default network"
-    VBoxManage modifyvm ${NAME} --natnet1 "${NATNET}"
-fi
 
 VBoxManage createhd --format VMDK --size 8192 --filename "${HDD}"
 

@@ -3,4 +3,4 @@ TYPE=RedHat_64
 INSTALLER="./isos/CentOS-6.5-x86_64-minimal.iso"
 GUESTADDITIONS="./isos/VBoxGuestAdditions-4.3.4.iso"
 HDD="${HOME}/VirtualBox VMs/${NAME}/${NAME}.vmdk"
-#NATNET=192.168.2.0/24
+NATNET=10.0.2.0/24
