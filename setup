@@ -37,10 +37,8 @@ VBoxManage storageattach ${NAME} \
 
 VBoxManage startvm ${NAME} --type gui
 
-# This is quite mac specific... sorry!
-echo Append one of these ks= statements to the boot flags:
-ifconfig en0 | grep 'inet ' | awk '{ print " ks=http://" $2 ":8081" }'
-ifconfig en1 | grep 'inet ' | awk '{ print " ks=http://" $2 ":8081" }'
+echo 'At the boot prompt, hit <TAB> and then type:'
+echo ' ks=http://10.0.2.3:8081'
 sh ./httpd.sh | nc -l 8081 >/dev/null
 
 echo When finished:
