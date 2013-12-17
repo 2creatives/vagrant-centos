@@ -10,7 +10,7 @@ VBoxManage modifyvm ${NAME} \
     --usb off \
     --audio none \
     --boot1 disk --boot2 dvd --boot3 none --boot4 none \
-    --nictype1 virtio --nic1 nat \
+    --nictype1 virtio --nic1 nat --natnet1 "${NATNET}" \
     --nictype2 virtio \
     --nictype3 virtio \
     --nictype4 virtio \
@@ -37,8 +37,12 @@ VBoxManage storageattach ${NAME} \
 
 VBoxManage startvm ${NAME} --type gui
 
+# This only really caters for the common case. If you have problems, please
+# discover your host's IP address and adjust accordingly.
+IP=`echo ${NATNET} | sed -nE 's/^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}).*/\1/p'`
+
 echo 'At the boot prompt, hit <TAB> and then type:'
-echo ' ks=http://10.0.2.3:8081'
+echo " ks=http://${IP}.3:8081"
 sh ./httpd.sh | nc -l 8081 >/dev/null
 
 echo When finished:
