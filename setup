@@ -41,7 +41,7 @@ VBoxManage startvm ${NAME} --type gui
 echo Append one of these ks= statements to the boot flags:
 ifconfig en0 | grep 'inet ' | awk '{ print " ks=http://" $2 ":8081" }'
 ifconfig en1 | grep 'inet ' | awk '{ print " ks=http://" $2 ":8081" }'
-sh ./httpd.sh | nc -l -p 8081 >/dev/null
+sh ./httpd.sh | nc -l 8081 >/dev/null
 
 echo When finished:
 echo "./cleanup && vagrant package --base ${NAME} --output boxes/${NAME}-`date -j +%Y%m%d`.box"
