@@ -23,7 +23,10 @@ VBoxManage modifyvm ${NAME} \
     --bioslogodisplaytime 0 \
     --biosbootmenu disabled
 
-VBoxManage createhd --format VMDK --size 8192 --filename "${HDD}"
+VBoxManage createhd --filename "${HDD}" --size 8192
+# Swap is recommended to be double the size of RAM. It is a fixed size as
+# it is performance sensitive.
+VBoxManage createhd --filename "${HDD_SWAP}" --size 1226 --variant Fixed
 
 VBoxManage storagectl ${NAME} \
     --name SATA --add sata --portcount 2 --bootable on
@@ -31,9 +34,11 @@ VBoxManage storagectl ${NAME} \
 VBoxManage storageattach ${NAME} \
     --storagectl SATA --port 0 --type hdd --medium "${HDD}"
 VBoxManage storageattach ${NAME} \
-    --storagectl SATA --port 1 --type dvddrive --medium "${INSTALLER}"
+    --storagectl SATA --port 1 --type hdd --medium "${HDD_SWAP}"
 VBoxManage storageattach ${NAME} \
-    --storagectl SATA --port 2 --type dvddrive --medium "${GUESTADDITIONS}"
+    --storagectl SATA --port 2 --type dvddrive --medium "${INSTALLER}"
+VBoxManage storageattach ${NAME} \
+    --storagectl SATA --port 3 --type dvddrive --medium "${GUESTADDITIONS}"
 
 VBoxManage startvm ${NAME} --type gui
 
