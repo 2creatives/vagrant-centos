@@ -14,4 +14,4 @@ VBoxManage storagectl ${NAME} \
 
 VBoxManage storageattach ${NAME} \
     --storagectl SATA --port 0 --type hdd \
-    --medium "${HOME}/VirtualBox VMs/${NAME}/${NAME}.vmdk"
+    --medium "${HDD}"
