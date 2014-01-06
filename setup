@@ -1,5 +1,6 @@
 #!/bin/sh -e
-source vars.sh
+
+. ./vars.sh
 
 VBoxManage createvm --name ${NAME} --ostype ${TYPE} --register
 
