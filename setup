@@ -24,8 +24,7 @@ VBoxManage modifyvm ${NAME} \
     --biosbootmenu disabled
 
 VBoxManage createhd --filename "${HDD}" --size 8192
-# Swap is recommended to be double the size of RAM. It is a fixed size as
-# it is performance sensitive.
+# Swap is recommended to be double the size of RAM.
 VBoxManage createhd --filename "${HDD_SWAP}" --size 1226
 
 VBoxManage storagectl ${NAME} \
