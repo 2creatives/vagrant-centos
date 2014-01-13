@@ -1,5 +1,6 @@
 #!/bin/sh -e
-source vars.sh
+
+. ./vars.sh
 
 VBoxManage createvm --name ${NAME} --ostype ${TYPE} --register
 
@@ -50,4 +51,4 @@ echo " ks=http://${IP}.3:8081"
 sh ./httpd.sh | nc -l 8081 >/dev/null
 
 echo When finished:
-echo "./cleanup && vagrant package --base ${NAME} --output boxes/${NAME}-`date -j +%Y%m%d`.box"
+echo "./cleanup && vagrant package --base ${NAME} --output boxes/${NAME}-`date +%Y%m%d`.box"
