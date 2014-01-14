@@ -5,7 +5,7 @@ Scripts to create a lean CentOS Vagrant box.
 
 Run:
 
-  ./setup
+    ./setup
 
 and at the boot prompt press tab to gain access to the boot options.
 Add the `ks=.*` string you get from the command prompt. The rest of
@@ -55,17 +55,17 @@ configuration to best suit your needs. In particular, take note
 of the location of the ISOs (which aren't include in the git
 repository):
 
-  INSTALLER="./isos/CentOS-6.5-x86_64-minimal.iso"
-  GUESTADDITIONS="./isos/VBoxGuestAdditions-4.3.4.iso"
+    INSTALLER="./isos/CentOS-6.5-x86_64-minimal.iso"
+    GUESTADDITIONS="./isos/VBoxGuestAdditions-4.3.4.iso"
 
 Assumptions have been made about the location of the hard drive as
 well:
 
-  HDD="${HOME}/VirtualBox VMs/${NAME}/${NAME}.vmdk"
+    HDD="${HOME}/VirtualBox VMs/${NAME}/${NAME}.vmdk"
 
 If you wished to be emailed with the various logs the build produces
 see the `ks.cfg` file and find the line:
 
-  EMAIL=root
+    EMAIL=root
 
 and adjust accordingly.
