@@ -50,5 +50,10 @@ echo 'At the boot prompt, hit <TAB> and then type:'
 echo " ks=http://${IP}.3:8081"
 sh ./httpd.sh | nc -l 8081 >/dev/null
 
-echo When finished:
-echo "./cleanup && vagrant package --base ${NAME} --output boxes/${NAME}-`date +%Y%m%d`.box"
+echo "The box has accepted the kickstart file. It will now go through"
+echo "a lengthy install. When it is finished it will shutdown and you"
+echo "can run:"
+echo
+echo "    ./cleanup && vagrant package --base ${NAME} --output boxes/${NAME}-`date +%Y%m%d`.box"
+echo
+echo "to create a Vagrant box."
