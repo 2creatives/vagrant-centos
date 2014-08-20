@@ -38,9 +38,9 @@ mainly done as a space saving measure.
 Additional Notes
 ----------------
 
-There is a hacky 'web server' to get the kickstart script into the
-installer which requires `netcat`. Alternatively, you could host the
-`ks.cfg` file on your own HTTP server.
+A simple Ruby-based webserver has been provided in order to
+bootstrap the process. Alternatively, you could host the `ks.cfg`
+file on your own HTTP server.
 
 Please be aware that these scripts will *not* install any special
 provisioners beyond the shell. Patches will be considered if you
