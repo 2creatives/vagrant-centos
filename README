@@ -56,7 +56,7 @@ of the location of the ISOs (which aren't include in the git
 repository):
 
     INSTALLER="./isos/CentOS-6.5-x86_64-minimal.iso"
-    GUESTADDITIONS="./isos/VBoxGuestAdditions-4.3.6.iso"
+    GUESTADDITIONS="./isos/VBoxGuestAdditions_4.3.14.iso"
 
 Assumptions have been made about the location of the hard drive as
 well:
