@@ -47,8 +47,8 @@ VBoxManage startvm ${NAME} --type gui
 IP=`echo ${NATNET} | sed -nE 's/^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}).*/\1/p'`
 
 echo 'At the boot prompt, hit <TAB> and then type:'
-echo " ks=http://${IP}.3:8081"
-ruby httpd.rb
+/bin/echo -n " ks=http://${IP}.3:"
+ruby httpd.rb ks.cfg
 
 echo When finished:
 echo "./cleanup && vagrant package --base ${NAME} --output boxes/${NAME}-`date +%Y%m%d`.box"
