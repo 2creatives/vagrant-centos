@@ -31,7 +31,7 @@ for your needs using options like:
 in your `Vagrantfile`.
 
 This box has a heavy bias towards US English locales. If this
-affects you, please adjust the `ks.cfg` file accordingly. This was
+affects you, please adjust the kickstart file accordingly. This was
 mainly done as a space saving measure.
 
 
@@ -39,7 +39,7 @@ Additional Notes
 ----------------
 
 A simple Ruby-based webserver has been provided in order to
-bootstrap the process. Alternatively, you could host the `ks.cfg`
+bootstrap the process. Alternatively, you could host the kickstart
 file on your own HTTP server.
 
 Please be aware that these scripts will *not* install any special
@@ -64,7 +64,7 @@ well:
     HDD="${HOME}/VirtualBox VMs/${NAME}/${NAME}.vmdk"
 
 If you wished to be emailed with the various logs the build produces
-see the `ks.cfg` file and find the line:
+see the kickstart file and find the line:
 
     EMAIL=root
 

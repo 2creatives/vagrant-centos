@@ -29,7 +29,7 @@ vc_check_file_readable () {
 }
 
 vc_parse_options () {
-    . ./vars.sh
+    . "${ROOT_DIR}/etc/box.conf"
 }
 
 vc_parse_args () {

@@ -1,9 +1,9 @@
 Copying
 =======
 
-All files are covered under the below license, unless otherwise
-stated. In particular, the kickstart file, ks.cfg, has been released
-into the public domain.
+All files are covered by the license below, unless otherwise stated.
+In particular, the kickstart files in the `./etc/ks/` directory,
+have been released into the public domain.
 
 --
 

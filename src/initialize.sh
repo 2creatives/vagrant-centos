@@ -71,7 +71,8 @@ vc_initialize_start_httpd () {
     printf " ks=http://${IP}.3:"
 
     ruby=$(vc_initialize_ruby_exec)
-    "${ruby}" "${ROOT_DIR}/src/httpd.rb" "${ROOT_DIR}/ks.cfg"
+    "${ruby}" "${ROOT_DIR}/src/httpd.rb" \
+        "${ROOT_DIR}/etc/ks/centos65-x86_64.cfg"
 }
 
 vc_initialize_cleanup_msg () {
