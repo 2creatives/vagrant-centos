@@ -5,15 +5,15 @@ Scripts to create a lean CentOS Vagrant box.
 
 Run:
 
-    ./setup
+    ./box initialize
 
 and at the boot prompt press tab to gain access to the boot options.
 Add the `ks=.*` string you get from the command prompt. The rest of
 the installation is automated.
 
-Finally, run the last command that `setup` spits out (it's of the
-form `./cleanup && ...`). Congratulations! You have just created a
-Vagrant box.
+Finally, run the last command that the initialize step spits out
+(it's of the form `./box cleanup && ...`). Congratulations! You have
+just created a Vagrant box.
 
 
 Specification
