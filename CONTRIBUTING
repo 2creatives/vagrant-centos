@@ -1,0 +1,10 @@
+Contributing
+============
+
+Please keep your commit messages high quality and to the point.
+Try and logically break up the commits so that the commit message
+reflects exactly what has changed. Tim Pope has written up some
+decent [guidelines][1] in this regard which I encourage you to read
+through.
+
+[1]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
