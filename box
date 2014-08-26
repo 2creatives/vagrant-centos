@@ -5,7 +5,7 @@ vc_printerr () {
 }
 
 vc_usage () {
-    vc_printerr "usage: $0"
+    vc_printerr "usage: $0 [-k kickstart_file]"
     vc_printerr " action\n"
 }
 
@@ -36,7 +36,7 @@ vc_parse_args () {
     local arg
     local args
 
-    args=$(getopt -n "$0" "$@")
+    args=$(getopt -n "$0" k: "$@")
     if [ $? -ne 0 ]; then
         vc_usage
         exit 1
@@ -45,6 +45,10 @@ vc_parse_args () {
     set -- ${args}
     for arg in "$@"; do
         case "${arg}" in
+            -k)
+                C_KICKSTART="$(vc_check_file_readable "$2")"; shift
+                shift
+                ;;
             --)
                 shift
                 break

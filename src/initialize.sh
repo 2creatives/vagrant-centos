@@ -72,7 +72,7 @@ vc_initialize_start_httpd () {
 
     ruby=$(vc_initialize_ruby_exec)
     "${ruby}" "${ROOT_DIR}/src/httpd.rb" \
-        "${ROOT_DIR}/etc/ks/centos65-x86_64.cfg"
+        "$1"
 }
 
 vc_initialize_cleanup_msg () {
@@ -88,7 +88,11 @@ vc_action_initialize () {
     local ruby
 
     vc_initialize_setup_box
-    vc_initialize_start_httpd
+    if [ -z "${C_KICKSTART}" ]; then
+        vc_initialize_start_httpd "${ROOT_DIR}/etc/ks/centos65-x86_64.cfg"
+    else
+        vc_initialize_start_httpd "${C_KICKSTART}"
+    fi
 
     vc_initialize_cleanup_msg
 }
