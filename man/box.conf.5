@@ -1,0 +1,23 @@
+.Dd 24 August 2014
+.Dt BOX.CONF 5
+.Os
+.Sh NAME
+.Nm box.conf ,
+.Nm box.conf.local
+.Nd configure options for
+.Xr box 1
+.Sh DESCRIPTION
+.Nm
+contains a series of Bourne shell assignments that configure the
+internal state for setting up a Vagrant box.
+.Sh FILES
+.Bl -tag -width "etc/box.conf.localXXX" -compact
+.It Pa etc/box.conf
+All the variable defaults are listed here. It should not be edited
+but is useful for reference.
+.It Pa etc/box.conf.local
+Locally editable version of
+.Pa etc/box.conf .
+.El
+.Sh SEE ALSO
+.Xr box 1

@@ -1,0 +1,50 @@
+.Dd 24 August 2014
+.Dt BOX 1
+.Os
+.Sh NAME
+.Nm ./box
+.Nd set up a CentOS-based Vagrant box
+.Sh SYNOPSIS
+.Nm
+.Op Fl c Ar config_file
+.Op Fl k Ar kickstart_file
+.Ar action
+.Sh DESCRIPTION
+.Nm
+assists in creating repeatable Vagrant boxes by use of a kickstart
+file from CentOS installation media.
+.Pp
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl c Ar config_file
+override
+.Nm
+configuration options with
+.Ar config_file .
+See
+.Xr box.conf 5 .
+.It Fl k Ar kickstart_file
+use a different
+.Ar kickstart_file
+to configure the virtual machine.
+.It Ar action
+Choose the type of action to perform. Available choices are
+.Ic initialize
+and
+.Ic cleanup .
+See
+.Sx Actions
+for a description of each one.
+.El
+.Ss Actions
+.Bl -tag -width "initializeXXX"
+.It initialize
+create a box from a kickstart file and shutdown.
+.It cleanup
+prepare the VM for distribution by removing unnecessary things, such
+as CD-ROM drives, from the VM.
+.El
+.Sh EXIT STATUS
+.Ex -std
+.Sh SEE ALSO
+.Xr box.conf 5
