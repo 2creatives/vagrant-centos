@@ -20,7 +20,7 @@ vc_get_file_dir () {
     while [ -h "${src}" ]; do src="$(readlink "${src}")"; done
     src=$(cd -P $(dirname "${src}") && pwd)
 
-    printf "${src}"
+    vc_pstd "${src}"
 }
 
 vc_check_file_readable () {
@@ -29,7 +29,7 @@ vc_check_file_readable () {
         vc_usage
         exit 2
     fi
-    printf "$1"
+    vc_pstd "$1"
 }
 
 vc_parse_options () {

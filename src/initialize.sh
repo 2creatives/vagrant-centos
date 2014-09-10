@@ -17,7 +17,7 @@ vc_initialize_ruby_exec () {
         fi
     fi
 
-    printf "${ruby_exec}"
+    vc_pstd "${ruby_exec}"
 }
 
 vc_initialize_setup_box () {
@@ -67,8 +67,8 @@ vc_initialize_start_httpd () {
     # accordingly.
     IP=${NATNET%.*/*}
 
-    printf "At the boot prompt, hit <TAB> and then type:\n\n"
-    printf " ks=http://${IP}.3:"
+    vc_pstd "At the boot prompt, hit <TAB> and then type:\n\n"
+    vc_pstd " ks=http://${IP}.3:"
 
     ruby=$(vc_initialize_ruby_exec)
     "${ruby}" "${ROOT_DIR}/src/httpd.rb" \
@@ -76,12 +76,12 @@ vc_initialize_start_httpd () {
 }
 
 vc_initialize_cleanup_msg () {
-    printf "\n\n"
-    printf "The box has accepted the kickstart file. It will now go through\n"
-    printf "a lengthy install. When it is finished it will shutdown and you\n"
-    printf "can run:\n\n"
-    printf "    ./box cleanup && vagrant package --base ${NAME} --output boxes/${NAME}-`date +%Y%m%d`.box\n\n"
-    printf "to create a Vagrant box.\n"
+    vc_pstd "\n\n"
+    vc_pstd "The box has accepted the kickstart file. It will now go through\n"
+    vc_pstd "a lengthy install. When it is finished it will shutdown and you\n"
+    vc_pstd "can run:\n\n"
+    vc_pstd "    ./box cleanup && vagrant package --base ${NAME} --output boxes/${NAME}-`date +%Y%m%d`.box\n\n"
+    vc_pstd "to create a Vagrant box.\n"
 }
 
 vc_action_initialize () {
