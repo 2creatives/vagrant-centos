@@ -54,40 +54,59 @@ vc_parse_args () {
     local arg
     local args
 
-    args=$(getopt -n "$0" c:k: "$@")
-    if [ $? -ne 0 ]; then
-        vc_usage
-        exit 1
-    fi
+    OPTIND=1
 
-    set -- ${args}
-    for arg in "$@"; do
-        case "${arg}" in
-            -c)
-                C_CONFIG_LOCAL="$(vc_check_file_readable "$2")"; shift
-                shift
+    while getopts ":a:c:k:" opt; do
+        case ${opt} in
+            a)
+                case "${OPTARG}" in
+                    initialize|cleanup)
+                        ACTION="${OPTARG}"
+                        ;;
+                    *)
+                        vc_perr "$0: unrecognised action -- ${OPTARG}\n"
+                        vc_usage
+                        exit 3
+                        ;;
+                esac
                 ;;
-            -k)
-                C_KICKSTART="$(vc_check_file_readable "$2")"; shift
-                shift
+            c)
+                C_CONFIG_LOCAL="$(vc_check_file_readable "${OPTARG}")" \
+                    || exit 8
                 ;;
-            --)
-                shift
-                break
+            k)
+                C_KICKSTART="$(vc_check_file_readable "${OPTARG}")" \
+                    || exit 9
+                ;;
+            \?)
+                vc_perr "$0: illegal opt -- ${OPTARG}\n"
+                exit 1
+                ;;
+            :)
+                case ${OPTARG} in
+                    a)
+                        vc_perr "$0: no action was specified\n"
+                        exit 5
+                        ;;
+                    c)
+                        vc_perr "$0: no config file was specified\n"
+                        exit 6
+                        ;;
+                    k)
+                        vc_perr "$0: no kickstart file was specified\n"
+                        exit 7
+                        ;;
+                esac
                 ;;
         esac
     done
 
-    case "$1" in
-        initialize|cleanup)
-            ACTION="$1"; shift
-            ;;
-        *)
-            vc_perr "$0: Unrecognised action: \"$1\".\n\n"
-            vc_usage
-            exit 3
-            ;;
-    esac
+    shift $(( OPTIND - 1 ))
+    if [ ! $# -eq 0 ]; then
+        vc_perr "$0: options not understood -- $@\n"
+        vc_usage
+        exit 10
+    fi
 }
 
 
