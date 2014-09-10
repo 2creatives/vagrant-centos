@@ -79,20 +79,24 @@ vc_parse_args () {
                 ;;
             \?)
                 vc_perr "$0: illegal opt -- ${OPTARG}\n"
+                vc_usage
                 exit 1
                 ;;
             :)
                 case ${OPTARG} in
                     a)
                         vc_perr "$0: no action was specified\n"
+                        vc_usage
                         exit 5
                         ;;
                     c)
                         vc_perr "$0: no config file was specified\n"
+                        vc_usage
                         exit 6
                         ;;
                     k)
                         vc_perr "$0: no kickstart file was specified\n"
+                        vc_usage
                         exit 7
                         ;;
                 esac
