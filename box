@@ -25,7 +25,7 @@ vc_get_file_dir () {
 
 vc_check_file_readable () {
     if [ ! -r "$1" ]; then
-        vc_perr "$0: Cannot read file: \"$1\".\n\n"
+        vc_perr "$0: cannot read file -- $1\n"
         vc_usage
         exit 2
     fi
