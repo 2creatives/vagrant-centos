@@ -1,12 +1,16 @@
 #!/bin/sh
 
-vc_printerr () {
-    printf "$@" 1>&2
+vc_pstd () {
+    printf -- "$*"
+}
+
+vc_perr () {
+    vc_pstd "$@" 1>&2
 }
 
 vc_usage () {
-    vc_printerr "usage: $0 [-c config_file] [-k kickstart_file]"
-    vc_printerr " action\n"
+    vc_perr "usage: $0 [-c config_file] [-k kickstart_file]"
+    vc_perr " action\n"
 }
 
 vc_get_file_dir () {
@@ -21,7 +25,7 @@ vc_get_file_dir () {
 
 vc_check_file_readable () {
     if [ ! -r "$1" ]; then
-        vc_printerr "$0: Cannot read file: \"$1\".\n\n"
+        vc_perr "$0: Cannot read file: \"$1\".\n\n"
         vc_usage
         exit 2
     fi
@@ -79,7 +83,7 @@ vc_parse_args () {
             ACTION="$1"; shift
             ;;
         *)
-            vc_printerr "$0: Unrecognised action: \"$1\".\n\n"
+            vc_perr "$0: Unrecognised action: \"$1\".\n\n"
             vc_usage
             exit 3
             ;;

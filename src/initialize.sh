@@ -12,7 +12,7 @@ vc_initialize_ruby_exec () {
     else
         ruby_exec=$(which ruby)
         if [ ! $? -eq 0 ]; then
-            vc_printerr "$0: Cannot find Ruby (needed to serve kickstart file)"
+            vc_perr "$0: Cannot find Ruby (needed to serve kickstart file)"
             exit 4
         fi
     fi
