@@ -129,4 +129,8 @@ case "${ACTION}" in
     cleanup)
         vc_action_cleanup
         ;;
+    *)
+        vc_perr "$0: no action was specified\n"
+        vc_usage
+        exit 5
 esac
