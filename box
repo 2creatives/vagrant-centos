@@ -9,8 +9,7 @@ vc_perr () {
 }
 
 vc_usage () {
-    vc_perr "usage: $0 [-c config_file] [-k kickstart_file]"
-    vc_perr " action\n"
+    vc_perr "usage: $0 -a action [-c config_file] [-k kickstart_file]\n"
 }
 
 vc_get_file_dir () {

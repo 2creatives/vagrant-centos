@@ -9,15 +9,15 @@ Quick start
 
 Run:
 
-    ./box initialize
+    ./box -a initialize
 
 and at the boot prompt press tab to gain access to the boot options.
 Add the `ks=.*` string you get from the command prompt. The rest of
 the installation is automated.
 
 Finally, run the last command that the initialize step spits out
-(it's of the form `./box cleanup && ...`). Congratulations! You have
-just created a Vagrant box.
+(it's of the form `./box -a cleanup && ...`). Congratulations! You
+have just created a Vagrant box.
 
 Please read the man pages under `./man/` for further information.
 
