@@ -27,7 +27,7 @@ vc_check_file_readable () {
     if [ ! -r "$1" ]; then
         vc_perr "$0: cannot read file -- $1\n"
         vc_usage
-        exit 2
+        return 1
     fi
     vc_pstd "$1"
 }
